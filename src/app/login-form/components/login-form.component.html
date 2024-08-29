@@ -1,0 +1,63 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <!-- Contenedor principal -->
+  <div class="card border-0 shadow-sm fall-animation">
+    <!-- Tarjeta con animación -->
+    <div class="card-body">
+      <!-- Cuerpo de la tarjeta -->
+      <div class="text-center mb-4 animate_animated animate_fadeInDown">
+        <!-- Imagen del logo -->
+        <img src="https://pokexamen.bananasoft.mx/assets/poke-ball.png" class="img-fluid" style="max-width: 200px;">
+      </div>
+
+      <h1 class="text-center mb-4">Login</h1>
+      <!-- Título de la página -->
+
+      <form [formGroup]="LoginFormulario" (ngSubmit)="onLoggedin()">
+        <!-- Formulario de login -->
+        
+        <div class="form-group row mb-3">
+          <!-- Grupo de formulario para el campo de email -->
+          <label for="email" class="col-form-label">
+            <ng-container *ngIf="isValid('email')">
+              <span class="text-danger">*</span>
+              <!-- Indicador de campo obligatorio si está vacío -->
+            </ng-container>
+            Email
+          </label>
+          <div>
+            <input id="email" type="email" formControlName="email" class="form-control" [ngClass]="{'is-invalid': isValid('email')}">
+            <!-- Campo de entrada para el email con clase condicional para errores -->
+            <div *ngIf="f['email'].errors && f['email'].touched" class="form-text text-danger">
+              <div *ngIf="f['email']?.errors?.['required'] || f['email']?.errors?.['email']">El email debe ser válido</div>
+              <!-- Mensaje de error si el campo email está vacío o es inválido -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <!-- Grupo de formulario para el campo de la contraseña -->
+          <label for="password" class="col-form-label">
+            <ng-container *ngIf="isValid('password')">
+              <span class="text-danger">*</span>
+              <!-- Indicador de campo obligatorio si está vacío -->
+            </ng-container>
+            Password
+          </label>
+          <div>
+            <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': isValid('password')}">
+            <!-- Campo de entrada para la contraseña con clase condicional para errores -->
+            <div *ngIf="f['password'].errors && f['password'].touched" class="form-text text-danger">
+              <div *ngIf="f['password']?.errors?.['required']">La contraseña es obligatoria</div>
+              <!-- Mensaje de error si el campo contraseña está vacío -->
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Login</button>
+          <!-- Botón para enviar el formulario de login -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="container">
+    <!-- Representacion visual (esqueleto de la card) -->
+    <ng-container *ngIf="!Datos">
+        <div class="card position-relative overflow-hidden">
+            <!-- Contenedor para el esqueleto de la tarjeta -->
+            <div class="position-absolute w-100 h-110">
+                <!-- Representacion visual para la imagen del Pokémon -->
+                <div class="rounded-circle w-100 ratio ratio-1x1 top-0 start-50 translate-middle representation-visual" style="transform: scale(1.5); height: 300px; width: 250px; margin-top: 15px"></div>
+                <!-- Representacion visual para el HP del Pokémon -->
+                <p class="position-absolute top-0 end-0 m-4 rounded-pill p-2 bg-white representation-visual" style="height: 80px; width: 80px;"></p>
+            </div>
+            <div class="z-3 justify-content-center align-items-center d-flex flex-column">
+                <!-- Representacion visual para la imagen de la tarjeta -->
+                <div class="p-5">
+                    <div class="card-img-top representation-visual" style="height: 200px; width: 100%;"></div>
+                </div>
+                <div class="card-body">
+                    <!-- Representacion visual para el nombre del Pokémon -->
+                    <h5 class="card-title fs-1 representation-visual" style="height: 24px; width: 200px;"></h5>
+                    <!-- Representacion visual para el tipo del Pokémon -->
+                    <p class="w-50 text-light m-auto rounded-pill text-center fs-6 representation-visual"style="height: 20px; width: 100px;"></p>
+                    <div class="d-flex justify-content-center gap-4">
+                        <!-- Representaciones visuales para las estadísticas del Pokémon -->
+                        <p class="card-text text-center d-flex flex-column fs-6">
+                            <b class="fs-2 representation-visual" style="height: 24px; width: 60px;"></b>
+                            Defensa
+                        </p>
+                        <p class="card-text text-center d-flex flex-column fs-6">
+                            <b class="fs-2 representation-visual" style="height: 24px; width: 60px;"></b>
+                            Ataque
+                        </p>
+                        <p class="card-text text-center d-flex flex-column fs-6">
+                            <b class="fs-2 representation-visual" style="height: 24px; width: 60px;"></b>
+                            Rapidez
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Tarjeta Real -->
+    <ng-container *ngIf="Datos">
+        <div class="card position-relative overflow-hidden">
+            <div class="position-absolute w-100 h-100">
+                <!-- Imagen circular del tipo del Pokémon en el tipo -->
+                <div class="rounded-circle w-100 ratio ratio-1x1 top-0 start-50 translate-middle {{Datos?.tipo}}" style="transform: scale(1.5)"></div>
+                <!-- Informacion del HP del Pokémon -->
+                <p class="position-absolute top-0 end-0 m-4 rounded-pill p-2 bg-white">HP <b>{{Datos?.hp}}</b></p>
+            </div>
+            <div class="z-3 justify-content-center align-items-center d-flex flex-column">
+                <!-- Imagen del Pokémon -->
+                <div class="p-5"><img [src]="Datos?.url_imagen" class="card-img-top" alt="Imagen del Pokémon"></div>
+                <div class="card-body">
+                    <!-- Nombre del Pokémon -->
+                    <h5 class="card-title fs-1"><b>{{Datos?.nombre}}</b></h5>
+                    <!-- Tipo del Pokémon -->
+                    <p class="w-50 text-light m-auto rounded-pill text-center fs-6 {{Datos?.tipo}}">
+                        <b>{{Datos?.tipo}}</b>
+                    </p>
+                    <div class="d-flex justify-content-center gap-4">
+                        <!-- Estadísticas del Pokémon -->
+                        <p class="card-text text-center d-flex flex-column fs-6">
+                            <b class="fs-2">{{Datos?.defensa}}</b>
+                            Defensa
+                        </p>
+                        <p class="card-text text-center d-flex flex-column fs-6">
+                            <b class="fs-2">{{Datos?.ataque}}</b>
+                            Ataque
+                        </p>
+                        <p class="card-text text-center d-flex flex-column fs-6">
+                            <b class="fs-2">{{Datos?.rapidez}}</b>
+                            Rapidez
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
